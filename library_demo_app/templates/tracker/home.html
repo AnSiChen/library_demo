@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="home-container">
+  <section class="hero">
+    <h1 class="home-heading">Welcome to Book Tracker</h1>
+    {% if user.is_authenticated %}
+      <p class="welcome-back">Welcome back, {{ user.username }}! Continue your reading journey.</p>
+      <a href="{% url 'dashboard' %}" class="btn btn-primary btn-hero">Go to Dashboard</a>
+    {% else %}
+      <div class="auth-links">
+        <a href="{% url 'login' %}" class="btn btn-secondary">Login</a> 
+        <a href="{% url 'signup' %}" class="btn btn-secondary">Sign Up</a>
+      </div>
+    {% endif %}
+  </section>
+
+  {% if user.is_authenticated %}
+    <section class="reading-challenge">
+      <h2>Reading Challenge</h2>
+      <p>Join our reading challenge and set your reading goals for the year!</p>
+      <div class="challenge-details">
+        <p>Current Progress: <span id="reading-progress">{{ reading_challenge.progress }}</span> out of <span id="reading-goal">{{ reading_challenge.goal }}</span> books</p>
+        <form id="reading-challenge-form" method="post" action="{% url 'reading_challenge' %}">
+            {% csrf_token %}
+            <input type="number" class="custom-number-input" name="new_goal" placeholder="Enter new goal" value="{{ reading_challenge.goal }}">
+            <button type="submit" class="btn btn-danger">Set Your Challenge</button>
+        </form>
+        {% if reading_challenge.progress >= reading_challenge.goal %}
+          <div class="congratulations">
+              Congratulations on completing your challenge!
+          </div>
+        {% endif %}
+      </div>
+    </section>
+  {% else %}
+    <section class="intro">
+      <p class="prompt-login">Keep track of your reading journey. Log in to start!</p>
+      {{ intro_text|safe }} <!-- 'intro_text' contains the paragraphs about Book Tracker -->
+    </section>
+  {% endif %}
+
+  {% if random_books %}
+    <section class="book-display">
+      <h2>Discover New Reads</h2>
+      <!-- Swiper -->
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in random_books %}
+                <div class="swiper-slide">
+                  <a href="{% url 'book_detail' book.id %}">
+                      <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+                  </a>
+                  <h3>{{ book.title }}</h3>
+                  <p>{{ book.author }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="add-book-container">
+  <h2 class="form-heading">Add Book</h2>
+
+  <!-- Form to Fetch Book Details -->
+  <form method="get" action="{% url 'add_book' %}" class="fetch-book-form">
+      <label for="isbn">ISBN:</label>
+      <input type="text" id="isbn" name="isbn" class="isbn-input" value="{{ request.GET.isbn }}">
+      <input type="submit" class="btn btn-secondary" value="Fetch Book Details">
+  </form>
+
+  <!-- Display Cover Image if URL is available -->
+  {% if cover_image_url %}
+      <img src="{{ cover_image_url }}" alt="Cover Image" class="cover-image" />
+  {% endif %}
+
+  <!-- Messages -->
+  {% for message in messages %}
+  <div class="alert {{ message.tags }}">
+    {{ message }}
+  </div>
+  {% endfor %}
+
+  <!-- Book Details Form -->
+  <form method="post" enctype="multipart/form-data" class="book-details-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Add Book</button>
+  </form>
+</div>
+{% endblock %}

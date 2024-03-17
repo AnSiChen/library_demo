@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="book-list-container">
+  <h2 class="page-heading">My Books</h2>
+  <!-- <a href="{% url 'add_book' %}" class="link-style">Add a new book</a> -->
+  <a href="{% url 'add_book' %}" class="btn btn-secondary">Add a New Book</a>
+  <div class="books">
+    {% if user_books %}
+      <ul class="book-list">
+        {% for user_book in user_books %}
+          <li class="book-item">
+            <!-- Book Cover Image -->
+            {% if user_book.book.cover_image %}
+                <img src="{{ user_book.book.cover_image.url }}" alt="Cover image for {{ user_book.book.title }}" class="book-cover" />
+            {% endif %}
+
+            <!-- Book Details -->
+            <div class="book-details">
+              <h3>{{ user_book.book.title }}</h3>
+              <p class="author"><strong>Author:</strong> {{ user_book.book.author }}</p>
+              <p class="isbn"><strong>ISBN:</strong> {{ user_book.book.isbn }}</p>
+              <p class="publication-date"><strong>Publication Date:</strong> {{ user_book.book.publication_date|date:"Y-m-d" }}</p>
+              <p class="genres"><strong>Genres:</strong> 
+                {% for genre in user_book.book.genres.all %}
+                    {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </p>
+              <p class="pages"><strong>Pages:</strong> {{ user_book.book.pages }}</p>
+              <p class="summary"><strong>Summary:</strong> {{ user_book.book.summary }}</p>
+              <p class="read-status"><strong>Read:</strong> {{ user_book.read|yesno:"Yes,No" }}</p>
+
+             
+              <!-- Read Status Form -->
+              <div class="read-status-form">
+                <form id="read-status-form" method="post" action="{% url 'update_read_status' user_book.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="read-status-selector_{{ user_book.id }}">Update Read Status:</label>
+                        <select id="read-status-selector_{{ user_book.id }}" name="status" class="read-status-selector">
+                            <option value="Not Started" {% if not user_book.read and user_book.progress == 0 %} selected {% endif %}>Not Started</option>
+                            <option value="In Progress" {% if not user_book.read and user_book.progress > 0 %} selected {% endif %}>In Progress</option>
+                            <option value="Completed" {% if user_book.read %} selected {% endif %}>Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="progress_{{ user_book.id }}">Progress (%):</label>
+                        <input type="number" class="custom-number-input reading-progress-input" name="progress" id="progress_{{ user_book.id }}" value="{{ user_book.progress }}" min="0" max="100">
+                    </div>
+                    <div id="progress-bar-container_{{ user_book.id }}" class="progress-bar-container">
+                        <div id="progress-bar_{{ user_book.id }}" class="progress-bar" style="width: {{ user_book.progress }}%;"></div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Update</button>
+                </form>
+            </div>
+            
+
+
+
+              <!-- Action Links -->
+              <div class="book-actions">
+                <a href="{% url 'book_detail' user_book.book.id %}" class="btn btn-primary">View details</a>
+                <a href="{% url 'book_edit' user_book.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'book_delete' user_book.id %}" class="btn btn-danger">Remove</a>
+
+                <a href="javascript:void(0);" 
+                  class="btn toggle-visibility {% if user_book.hide_from_profile %}btn-primary{% else %}btn-danger{% endif %}" 
+                  data-book-id="{{ user_book.id }}"
+                  data-current-state="{{ user_book.hide_from_profile|lower }}">
+                    {% if user_book.hide_from_profile %}
+                        Display
+                    {% else %}
+                        Hide
+                    {% endif %}
+                </a>
+
+              
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-books-message">You have no books in your tracker.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="confirm-delete-container">
+  <h2 class="page-heading">Remove Book</h2>
+  <p class="confirmation-text">Are you sure you want to remove "{{ book.title }}"?</p>
+  <p class="note-text">Your review and rating for this book are still accessible under the book detail's page.</p>
+
+  <form method="post" class="delete-form">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, remove it</button>
+  </form>
+
+  <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+</div>
+{% endblock %}

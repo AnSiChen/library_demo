@@ -1,0 +1,1 @@
+default_app_config = 'library_demo_app.apps.LibraryDemoAppConfig'

@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon"> <!-- Favicon -->
+    <link rel="icon" href="{% static 'favicon-32.png' %}" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}" sizes="180x180">
+    <!-- Additional CSS files or JS can be added here -->
+</head>
+<body>
+    <header>
+
+        <!-- Logo -->
+        <div class="logo-container">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'logo.png' %}" alt="Book Tracker Logo" class="logo"/>
+            </a>
+        </div>
+        <!-- Navigation bar can go here -->
+        <nav class="container">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li class="user-info">
+                        <a href="{% url 'edit_profile' %}">
+                            <strong> @{{ user.username }}</strong>
+                        </a>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li class="user-info">
+                        <a href="{% url 'home' %}">
+                            <strong></strong>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <div class="container search-container">
+            <form method="get" action="{% url 'general_book_search' %}">
+                <label for="book-search" class="hidden">Search books</label>
+                <input type="text" id="book-search" name="q" value="{{ query }}" placeholder="Search books...">
+                <!-- <button type="submit" class="button-highlight">Search</button> -->
+                <!-- for exploring book db -->
+                <button onclick="location.href='{% url 'explore_books' %}'" class="button-highlight">Explore</button>
+
+            </form>
+            <!-- display search results -->
+            <div id="search-results"></div>
+        </div>
+        
+    </header>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <main>
+        {% block content %}
+        <!-- Other templates extending base.html -->
+        {% endblock content %}
+    </main>
+
+    <footer >
+        <div class="container">
+            <!-- Footer navigation links -->
+            <nav>
+                <ul>
+                    <li><a href="{% url 'add_book' %}">Add Book</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Copyright notice -->
+            <p id="le-footer">&copy; 2023 Book Tracker</p>
+        </div>
+    </footer>
+
+    <!-- Define csrftoken variable for use in JavaScript -->
+    <script>
+        const csrftoken = '{{ csrf_token }}';
+    </script>
+
+    <!-- JavaScript files can be included at the bottom of the body -->
+    <script src="{% static 'main.js' %}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</body>
+</html>

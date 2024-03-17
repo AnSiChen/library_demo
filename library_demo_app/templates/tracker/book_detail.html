@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="book-detail-container">
+  <h2 class="form-heading">Book Details</h2>
+
+  <div class="book-info">
+      {% if book.cover_image %}
+          <img src="{{ book.cover_image.url }}" alt="Cover image for {{ book.title }}" class="book-cover" />
+      {% endif %}
+      <h3 class="book-title">{{ book.title }}</h3>
+      <p class="book-author"><strong>Author:</strong> {{ book.author }}</p>
+      <p class="book-isbn"><strong>ISBN:</strong> {{ book.isbn }}</p>
+      <p class="book-publication-date"><strong>Publication Date:</strong> {{ book.publication_date|date:"Y-m-d" }}</p>
+      <p class="book-pages"><strong>Pages:</strong> {{ book.pages }}</p>
+      <p class="book-genres"><strong>Genres:</strong> 
+        {% for genre in book.genres.all %}
+            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </p>
+      <p class="book-summary"><strong>Summary:</strong> {{ book.summary }}</p>
+      <p class="book-read-status"><strong>Read:</strong> {{ user_book.read|yesno:"Yes,No" }}</p>
+
+      <div class="action-buttons">
+        <a href="{% url 'generate_book_card' book.id %}" class="btn btn-secondary">Generate Shareable Card</a>
+    
+        {% if user_book %}
+            <!-- Show Edit and Remove only if the user has this book in their list -->
+            <a href="{% url 'book_edit' user_book.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'book_delete' user_book.id %}" class="btn btn-danger">Remove</a>
+        {% else %}
+            <!-- Add to My List button for AJAX call -->
+            <!-- Add to My List link for AJAX call -->
+            <a href="javascript:void(0);" class="btn btn-primary add-book-btn" data-book-id="{{ book.id }}">Add to My List</a>
+
+
+        {% endif %}
+    </div>
+  </div>
+
+  <h3 class="reviews-heading">Reviews</h3>
+  <div class="reviews">
+      {% if reviews %}
+          {% for review in reviews %}
+              <div class="review">
+                  <p><strong>{{ review.user.username }}:</strong> {{ review.comment }} (Rating: {{ review.rating }})</p>
+                  <p class="review-date">Date: {{ review.created_at|date:"Y-m-d" }}</p>
+              </div>
+          {% endfor %}
+      {% else %}
+          <p class="no-reviews">No reviews yet.</p>
+      {% endif %}
+  </div>
+
+  {% if user_book.read and not has_reviewed %}
+      <h3 class="submit-review-heading">Submit a Review</h3>
+     
+        <form method="post" action="{% url 'submit_review' user_book.id %}" class="review-form" data-user-book-id="{{ user_book.id }}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+
+  {% elif user_book.read %}
+      <p class="review-status">You have already submitted a review for this book.</p>
+  {% endif %}
+
+  <a href="{% url 'book_list' %}" class="link-style">Back to Book List</a>
+
+</div>
+{% endblock %}

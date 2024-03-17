@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="search-results-container">
+  <h2 class="page-heading">Search Results</h2>
+  <div class="books">
+    {% if books %}
+      <ul class="book-list">
+        {% for book in books %}
+          <li class="book-item">
+            {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" alt="Cover image for {{ book.title }}" class="book-cover" />
+            {% endif %}
+            <div class="book-details">
+              <h3>{{ book.title }}</h3>
+              <p class="author">Author: {{ book.author }}</p>
+              <p class="isbn">ISBN: {{ book.isbn }}</p>
+              <p class="publication-date">Publication Date: {{ book.publication_date|date:"Y-m-d" }}</p>
+              <p class="genres"><strong>Genres:</strong> 
+                  {% for genre in book.genres.all %}
+                      {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+              </p>
+              <p class="pages">Pages: {{ book.pages }}</p>
+              <p class="summary">Summary: {{ book.summary }}</p>
+              <a href="{% url 'book_detail' book.id %}" class="link-style">View details</a>
+              <form method="post" action="{% url 'add_to_my_list' book.id %}" class="add-to-list-form">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-secondary">Add to My List</button>
+              </form>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-books-message">No books found for your search query.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Display messages if there are any -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Main grid container for profiles -->
+    <div class="dashboard-grid">
+        <!-- Main User Profile Section -->
+        <div class="user-profile my-profile">
+            {% if user.profile.profile_photo %}
+                <img src="{{ user.profile.profile_photo.url }}" alt="Profile photo" class="profile-photo" />
+            {% endif %}
+            <h3>My Dashboard</h3>
+            {% if user.profile %}
+            <p class="bio"><strong>Bio:</strong> {{ user.profile.bio }}</p>
+            <p class="location"><strong>Location:</strong> {{ user.profile.location }}</p>
+            <p class="birthdate"><strong>Birth Date:</strong> {{ user.profile.birth_date|date:"Y-m-d" }}</p>
+            {% endif %}
+            <!-- Links to user actions -->
+            <div class="book-links">
+                <a href="{% url 'book_list' %}" class="btn btn-primary">My Books</a>
+                <a href="{% url 'add_book' %}" class="btn btn-secondary">New Book</a>
+                <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+            </div>
+        </div>
+    
+        <!-- Grid container for other profiles -->
+        <div class="profiles-container">
+            {% for profile_user in random_profiles %}
+            <!-- Individual profile card -->
+            <div class="profile-card">
+                {% if profile_user.profile.profile_photo %}
+                    <img src="{{ profile_user.profile.profile_photo.url }}" alt="Profile photo" class="profile-photo" />
+                {% endif %}
+                <h4>{{ profile_user.username }}</h4>
+                <p class="bio"><strong>Bio:</strong> {{ profile_user.profile.bio }}</p>
+                <p class="location"><strong>Location:</strong> {{ profile_user.profile.location }}</p>
+                <p class="birthdate"><strong>Birth Date:</strong> {{ profile_user.profile.birth_date|date:"Y-m-d" }}</p>
+                <a href="{% url 'user_profile' profile_user.username %}" class="btn btn-danger">View Profile</a>
+            </div>
+            {% endfor %}
+        </div>  
+
+        <!-- Quick Notes Section -->
+        <div class="quick-notes-section">
+            <h3>Quick Notes</h3>
+            <form id="quick-notes-form" method="post">
+                {% csrf_token %}
+                {{ note_form.as_p }}
+                <button type="submit">Add Note</button>
+            </form>
+
+            <!-- Display the quick notes -->
+            <div class="quick-notes-list" id="quick-notes-list">
+                {% for note in quick_notes %}
+                    <div class="quick-note">
+                        <p>{{ note.note }}</p>
+                        <span class="timestamp">{{ note.created_at }}</span>
+                    </div>
+                {% empty %}
+                    <p>No notes yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="continue-reading">
+            <h3>Books You Are Currently Reading...</h3>
+            <div class="in-progress-books">
+                {% for user_book in in_progress_books %}
+                    <a href="{% url 'book_detail' user_book.book.id %}" class="in-progress-book-card">
+                        {% if user_book.book.cover_image %}
+                            <img src="{{ user_book.book.cover_image.url }}" alt="{{ user_book.book.title }}" class="book-cover-reading" />
+                        {% endif %}
+                        <!-- <h4 class="book-title-reading">{{ user_book.book.title }}</h4> -->
+                    </a>
+                {% empty %}
+                    <p>You have no books in progress.</p>
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+
+    </div>
+
+    
+
+    
+    
+</div>
+{% endblock %}

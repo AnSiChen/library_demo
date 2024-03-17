@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>{{ profile_user.username }}'s Profile</h2>
+
+    <!-- Profile Details -->
+    <div class="profile-card-profile">
+        {% if profile_user.profile.profile_photo %}
+            <img class="profile-photo-profile" src="{{ profile_user.profile.profile_photo.url }}" alt="{{ profile_user.username }}'s profile photo">
+        {% endif %}
+        <div class="profile-info">
+            <p><strong>Bio:</strong> {{ profile_user.profile.bio }}</p>
+            <p><strong>Location:</strong> {{ profile_user.profile.location }}</p>
+            <p><strong>Birth Date:</strong> {{ profile_user.profile.birth_date|date:"Y-m-d" }}</p>
+        </div>
+    </div>
+
+    <!-- Book List -->
+    <h3>{{ profile_user.username }}'s Books</h3>
+    <div class="book-list-profile">
+       
+        {% for user_book in user_books %}
+            
+            <div class="book-entry-profile">
+                {% if user_book.book.cover_image %}
+                    <img src="{{ user_book.book.cover_image.url }}" alt="Cover image for {{ user_book.book.title }}" class="book-cover" />
+                {% endif %}
+                <h4>{{ user_book.book.title }}</h4>
+                <p>by {{ user_book.book.author }}</p>
+                {% if user_book.book.id not in current_user_book_ids %}
+                    <form method="post" action="{% url 'add_to_my_list' user_book.book.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Add to My List</button>
+                    </form>
+                {% else %}
+                    <span>This book is in your list.</span>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No books to display.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
