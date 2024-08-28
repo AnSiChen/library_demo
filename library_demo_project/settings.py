@@ -27,10 +27,7 @@ env_file = os.path.join(base_dir, '.env')
 
 env = environ.Env()
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-
-if not SECRET_KEY:
-    raise ValueError("The DJANGO_SECRET_KEY environment variable is not set.")
+SECRET_KEY = "-qe3s-!u5*@vz#%k#8jxmy09=4(yuho87k0hl%aybg4)*m7ycc"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
