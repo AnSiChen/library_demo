@@ -27,7 +27,7 @@ services:
     ports:
       - "8011:80"
     depends_on:
-      - web
+      - library_demo_web
     networks:
       - hubstation_frontend_network
 
