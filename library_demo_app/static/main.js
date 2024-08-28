@@ -522,7 +522,7 @@ window.onload = function() {
         modal.style.display = "none";
     };
 
-    // Close modal if the user clicks anywhere outside of it
+    // Close modal if the  user clicks anywhere outside of it
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
