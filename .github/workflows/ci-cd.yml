@@ -13,14 +13,6 @@ jobs:
     - name: Checkout the repository
       uses: actions/checkout@v3
 
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Debug SSH
-      run: ssh-add -l
-
     - name: Deploy to the server
       uses: appleboy/ssh-action@master
       with:
@@ -29,29 +21,8 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           set -e  # Stop on error
-
           cd ~/library_demo
-
-          if git pull origin main; then
-            echo "Repository updated successfully."
-          else
-            echo "Failed to update repository."
-            exit 1
-          fi
-          
-          if docker-compose down; then
-            echo "Docker containers stopped."
-          else
-            echo "Failed to stop Docker containers."
-            exit 1
-          fi
-          
+          git pull origin main
+          docker-compose down
           docker volume rm library_demo_static_volume || echo "Volume not found. Continuing..."
-          
-          if docker-compose up -d --build; then
-            echo "Deployment successful."
-          else
-            echo "Deployment failed."
-            exit 1
-          fi
-          
+          docker-compose up -d --build
