@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from library_demo_app.views import CustomLoginView
+from library_demo_app.views import CustomLoginView, custom_logout
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,10 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('library_demo_app.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='library_demo_app/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('custom-logout/', custom_logout, name='custom_logout'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-
 
 ]
 

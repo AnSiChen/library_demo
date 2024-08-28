@@ -1,3 +1,22 @@
+/* 
+  Book Tracker Demo Version 1.0
+  Originally created for Harvard CS50's Web Programming with Python and JavaScript course.
+  For more information on this or more projects, please visit: https://anthonyem.com
+  Thank you for visiting!
+
+  Developer: Anthony Em | 安思辰
+  
+  Note: The CSS for this project was developed incrementally as the project expanded. 
+  Currently, the CSS may lack optimal organization due to its gradual evolution.
+  
+  Future Plans:
+  - Refactor the CSS to improve organization and maintainability.
+  - Enhance documentation within the CSS by adding detailed comments.
+  - Group related styles together for better coherence.
+  - Considerations to modularize the CSS into separate files to streamline style management.
+*/
+
+
 :root {
     /* General colors */
     --deep-navy-blue: #003366;
@@ -9,15 +28,21 @@
 
 
     /* Hover colors */
-    --rich-maroon-hover: #700000; /* Darker shade of rich maroon */
-    --soft-gold-hover: #e6c200; /* Slightly darker shade of soft gold */
-    --deep-navy-blue-hover: #00234d; /* Darker shade of deep navy blue */
-    --warm-beige-hover: #f2f2f2; /* Slightly darker shade of white (light grey) */
+    --rich-maroon-hover: #700000; 
+    --soft-gold-hover: #e6c200; 
+    --deep-navy-blue-hover: #00234d; 
+    --warm-beige-hover: #f2f2f2; 
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 header, footer {
     background-color: var(--deep-navy-blue);
-    color: white; /* Readable Text */
+    color: white; 
     text-align: center;
 }
 
@@ -81,31 +106,32 @@ header .container, footer .container {
 /* Footer specific styles */
 footer {
     background-color: var(--deep-navy-blue);
-    color: #fff; /* For light text on dark background */
+    color: #fff; 
+
 }
 
 footer .container {
-    flex-direction: column; /* Stack items vertically */
-    text-align: center; /* Center-align the text */
+    flex-direction: column; 
+    text-align: center; 
 }
 
 footer nav ul {
     list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove default padding */
-    margin: 1rem 0; /* Add some space above and below the list */
+    padding: 0; 
+    margin: 1rem 0;
 }
 
 footer nav ul li {
-    display: inline-block; /* Display list items in a line */
-    margin-right: 20px; /* Space between items */
+    display: inline-block; 
+    margin-right: 20px; /
 }
 
 footer nav ul li:last-child {
-    margin-right: 0; /* No space after the last item */
+    margin-right: 0; 
 }
 
 footer p {
-    margin-top: 1rem; /* Space above the copyright text */
+    margin-top: 1rem; 
 }
 
 #le-footer {
@@ -123,8 +149,8 @@ footer p {
     }
 
     footer nav ul li {
-        display: block; /* Stack list items vertically on small screens */
-        margin: 0.5rem 0; /* Space above and below each item */
+        display: block; 
+        margin: 0.5rem 0; 
     }
 }
 
@@ -134,12 +160,12 @@ footer p {
     margin: 1rem 0;
     padding: 0.5rem;
     display: flex;
-    justify-content: center; /* Center logo horizontally */
+    justify-content: center; 
 }
 
 .logo {
     height: 50px; 
-    width: auto; /* Maintain aspect ratio */
+    width: auto; /* aspect ratio */
 }
 
 .user-info {
@@ -157,10 +183,10 @@ textarea,
 select {
     border: 1px solid #ccc;
     padding: 10px;
-    margin-bottom: 15px; /* Spacing between form elements */
-    width: 100%; /* Full-width inputs */
-    border: 1px solid #ccc; /* Give a border */
-    border-radius: 4px; /* Optional: rounded corners */
+    margin-bottom: 15px; 
+    width: 100%; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
     box-sizing: border-box; 
 }
 
@@ -170,9 +196,9 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
-    text-transform: uppercase; /* Stylistic choice for buttons */
-    letter-spacing: 1px; /* Increases readability for uppercase text */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    transition: background-color 0.3s ease; 
 }
 
 .text-center { text-align: center; }
@@ -181,29 +207,29 @@ button {
 /* Navbar link styling */
 nav ul li {
     display: inline-block; 
-    margin-right: 20px; /* Spacing between links */
+    margin-right: 20px; 
 }
 
 nav ul li a {
-    padding: 10px 15px; /* Clickable area */
+    padding: 10px 15px; 
     color: white; 
-    text-decoration: none; /* No underline */
+    text-decoration: none; 
 }
 
 nav ul li a:hover,
 nav ul li a:focus {
-    background-color: var(--rich-maroon); /* Highlight color on hover */
-    border-radius: 5px; /* Optional rounded corners */
+    background-color: var(--rich-maroon); 
+    border-radius: 5px;
 }
 
 
 /* seacrh container*/
 
 .search-container {
-    width: 100%; /* Make the input take the full width of its parent */
-    padding: 10px; /* Add some padding inside the input for spacing */
-    margin-bottom: 15px; /* Add some space below each input */
-    box-sizing: border-box; /* Make sure padding does not affect the overall width */
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    box-sizing: border-box;
 }
 
 /* Search Results Container */
@@ -213,7 +239,7 @@ nav ul li a:focus {
     background-color: var(--warm-beige);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     max-height: 300px;
-    overflow-y: auto; /* Allows scrolling within the container */
+    overflow-y: auto; 
     font-family: 'Open Sans', sans-serif;
     
 }
@@ -226,8 +252,8 @@ nav ul li a:focus {
     border-bottom: none;
     color: var(--deep-navy-blue);
     text-decoration: none;
-    font-size: 14px; /* Slightly smaller than the body font for differentiation */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    font-size: 14px;
+    transition: background-color 0.3s ease; 
 }
 
 /* Hover Effect for Search Result Items */
@@ -242,11 +268,11 @@ nav ul li a:focus {
 /* General Link Style */
 .link-style {
     color: var(--rich-maroon);
-    text-decoration: none; /* Remove underline by default */
+    text-decoration: none; 
 }
 
 .link-style:hover {
-    text-decoration: underline; /* Add underline on hover for better UX */
+    text-decoration: underline; 
 }
 
 
@@ -256,6 +282,9 @@ nav ul li a:focus {
     padding: 20px;
     background-color: var(--warm-beige);
     text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 /* Home Heading */
@@ -284,12 +313,6 @@ nav ul li a:focus {
     color: var(--deep-navy-blue);
 }
 
-.home-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
   section.hero {
     text-align: center;
     margin-bottom: 3rem;
@@ -337,30 +360,30 @@ nav ul li a:focus {
 /* Swiper */ 
 .swiper-container {
     width: 100%;
-    max-width: 1200px; /* Set a max-width if necessary */
+    max-width: 1200px; 
     margin: auto; /* Center the carousel */
     overflow: hidden;
 }
 
 /* Styling for each slide within the Swiper */
 .swiper-slide {
-    font-size: 1em; /* Adjust font size */
+    font-size: 1em;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content to the top */
+    justify-content: flex-start; 
     align-items: center;
     padding: 15px;
-    background: #fff; /* Background color for the slide */
-    border: 1px solid #ddd; /* Border for the slide */
-    border-radius: 10px; /* Rounded corners for the slide */
+    background: #fff; 
+    border: 1px solid #ddd;
+    border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
-    transition: transform 0.3s, box-shadow 0.3s; /* Transition for interaction */
+    transition: transform 0.3s, box-shadow 0.3s; 
 }
 
 .swiper-slide:hover {
-    transform: translateY(-5px); /* Slight raise on hover for 3D effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
+    transform: translateY(-5px); /* raise on hover for 3D effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
 }
 
 /* Image within the slide */
@@ -375,18 +398,18 @@ nav ul li a:focus {
 /* Swiper pagination bullets */
 .swiper-pagination {
     position: relative;
-    bottom: 0; /* Position at the bottom */
-    width: 100%; /* Full width */
-    text-align: center; /* Center the dots */
+    bottom: 0; 
+    width: 100%; 
+    text-align: center; 
 }
 
 .swiper-pagination-bullet {
-    background: var(--deep-navy-blue); /* Active bullet color */
-    opacity: 0.7; /* Non-active bullet opacity */
+    background: var(--deep-navy-blue);
+    opacity: 0.7; 
 }
 
 .swiper-pagination-bullet-active {
-    opacity: 1; /* Active bullet opacity */
+    opacity: 1; 
 }
 
 /* Adjustments for text to prevent overflow */
@@ -401,25 +424,20 @@ nav ul li a:focus {
 /* Style override for smaller screens */
 @media (max-width: 768px) {
     .swiper-slide {
-        width: 90%; /* Adjust width on smaller screens */
+        width: 90%;
         max-height: none;
     }
 
     .swiper-slide img {
-        max-height: 120px; /* Smaller image height on smaller screens */
+        max-height: 120px; 
     }
 
     .swiper-slide h3,
     .swiper-slide p {
-        font-size: 0.8em; /* Smaller font size on smaller screens */
+        font-size: 0.8em; 
         white-space: normal; /* Allow text to wrap */
     }
 }
-
-
-
-
-
 
 /* Login Container */
 .login-container {
@@ -435,19 +453,19 @@ nav ul li a:focus {
 .form-heading {
     text-align: center;
     color: var(--deep-navy-blue);
-    margin-bottom: 30px; /* Add some space below the heading */
+    margin-bottom: 30px; 
 }
 
 /* Login Form */
 .login-form p {
-    margin-bottom: 15px; /* Spacing between form fields */
+    margin-bottom: 15px; 
 }
 
 .login-form label,
 .login-form input {
     display: block;
     width: 100%;
-    margin-bottom: 5px; /* Spacing between the label and input */
+    margin-bottom: 5px;
     background-color: var(--warm-beige);
 }
 
@@ -455,16 +473,15 @@ nav ul li a:focus {
 .login-form input[type='password'] {
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px; 
     background-color: var(--warm-beige);
 }
 
 /* Style for the forgot password link */
 .forgot-password-link,
 .signup-link {
-    display: block; /* Make the link a block element for better control */
-    margin-top: 15px; /* Spacing above the link */
-    text-align: center; /* Center align the link */
+    display: block; 
+    margin-top: 15px; 
     color: var(--deep-navy-blue); 
     font-size: 0.9em; 
     text-decoration: none; 
@@ -472,8 +489,8 @@ nav ul li a:focus {
 
 .forgot-password-link:hover,
 .signup-link:hover {
-    text-decoration: none; /* Add underline on hover for better interaction */
-    color: var(--rich-maroon); /* Change color on hover */
+    text-decoration: none;
+    color: var(--rich-maroon); 
 }
 
 
@@ -485,17 +502,14 @@ nav ul li a:focus {
     border: none;
     border-radius: 5px;
     color: white;
-    text-decoration: none; /* Remove underline from link-styled buttons */
-    display: inline-block; /* Ensure proper spacing and alignment */
+    text-decoration: none; 
+    display: inline-block; 
     transition: background-color 0.3s ease;
 }
 
 .action-btn {
-    margin-right: 3px; /* Adjust the spacing to your preference */
-    /* Add any other styling needed for your buttons here */
+    margin-right: 3px; 
 }
-
-
 
 .btn-primary {
     background-color: var(--rich-maroon);
@@ -514,7 +528,7 @@ nav ul li a:focus {
 }
 
 .btn-danger {
-    background-color: var(--deep-navy-blue); /* Using deep navy blue for danger */
+    background-color: var(--deep-navy-blue);
 }
 
 .btn-danger:hover, .btn-danger:focus {
@@ -529,11 +543,6 @@ nav ul li a:focus {
         margin: 0 auto; /* Center form on smaller screens */
     }
 }
-
-
-
-
-
 
 
 /* Add Book Container */
@@ -606,9 +615,6 @@ nav ul li a:focus {
 }
 
 
-
-
-
 /* Book Detail Container */
 
 /* Overall Layout*/
@@ -650,7 +656,7 @@ nav ul li a:focus {
 .reviews-heading, .submit-review-heading {
     color: var(--deep-navy-blue);
     margin-top: 40px;
-    font-size: 24px; /* Larger font for headings */
+    font-size: 24px; 
 }
 
 .review {
@@ -666,13 +672,13 @@ nav ul li a:focus {
     font-size: 0.85em;
     color: #666;
     text-align: right; /* Align date to the right */
-    margin-top: 10px; /* Space out the date from the comment */
+    margin-top: 10px; 
 }
 
 .no-reviews {
     text-align: center;
     color: #666;
-    margin-top: 20px; /* Add more space above the message */
+    margin-top: 20px;
 }
 
 /* Review Form */
@@ -686,7 +692,7 @@ nav ul li a:focus {
 .review-form label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold; /* Make labels bold */
+    font-weight: bold;
 }
 
 .review-form input[type="radio"] {
@@ -713,9 +719,6 @@ nav ul li a:focus {
     color: red;
     /* Add any other styles */
 }
-
-
-
 
 #passwordError {
     display: none;
@@ -769,12 +772,12 @@ nav ul li a:focus {
     transition: width 0.3s ease; /* Smooth transition for width changes */
 }
 
-/* Reading Progress Input - initially hidden, will be displayed via JavaScript */
+/* Reading Progress Input - initially hidden, will be displayed via JS */
 .reading-progress-input {
     display: none;
 }
 
-/* When the progress input should be visible, the class 'show' will be toggled via JavaScript */
+/* Toggle progress via JS */
 .reading-progress-input.show {
     display: block;
 }
@@ -803,7 +806,7 @@ nav ul li a:focus {
 .user-profile {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distributes space evenly */
+    justify-content: space-between; 
     grid-column: 1;
     background-color: #fff;
     padding: 15px;
@@ -833,7 +836,7 @@ nav ul li a:focus {
 .profile-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distributes space evenly */
+    justify-content: space-between; 
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -850,7 +853,7 @@ nav ul li a:focus {
     margin-bottom: 10px;
 }
 
-/* Quick Notes Section */
+/* Quick Notes Section: Might need adjusment, TODO */
 .quick-notes {
  
     background-color: #fff;
@@ -861,7 +864,7 @@ nav ul li a:focus {
 }
 
 .quick-notes-list {
-    max-height: 500px; /* Adjust as needed */
+    max-height: 500px; 
     overflow-y: auto;
     word-wrap: break-word;
  
@@ -887,14 +890,14 @@ nav ul li a:focus {
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
-    width: 180px; /* or any suitable fixed width */
+    width: 180px; 
     text-align: center;
     text-decoration: none;
 }
 
 .in-progress-book-card:hover {
-    transform: scale(1.03); /* Scales the book card slightly to give a pop effect */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow to lift the card */
+    transform: scale(1.03); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 
@@ -904,7 +907,7 @@ nav ul li a:focus {
     display: block;
 }
 
-/*
+/* DELETED FOR aesthetic reasons
 .book-title-reading {
     padding: 5px;
     font-size: 1em;
@@ -922,15 +925,15 @@ nav ul li a:focus {
     }
 
     .user-profile, .profiles-container, .quick-notes, .continue-reading {
-        grid-column: 1 / 2; /* Adjusts the column layout for smaller screens */
+        grid-column: 1 / 2; 
     }
 
     .profile-card, .user-profile {
-        padding: 10px; /* Adjusts padding for smaller screens */
+        padding: 10px;
     }
 
     .profile-card .profile-photo, .user-profile .profile-photo {
-        width: 60px; /* Adjusts the profile photo size for smaller screens */
+        width: 60px; 
         height: 60px;
     }
 }
@@ -938,12 +941,12 @@ nav ul li a:focus {
 @media only screen and (max-width: 480px) {
     /* For mobile devices */
     .dashboard-container {
-        width: 100%; /* Utilizes the full width on very small screens */
+        width: 100%;
         padding: 10px;
     }
 
     .profile-card .profile-photo, .user-profile .profile-photo {
-        width: 50px; /* Further adjusts the profile photo size for mobile screens */
+        width: 50px; 
         height: 50px;
     }
 }
@@ -968,7 +971,7 @@ nav ul li a:focus {
 
 /* Signup Form */
 .signup-form p {
-    margin-bottom: 15px; /* Consistent spacing between form fields */
+    margin-bottom: 15px; 
 }
 
 .signup-form label,
@@ -998,8 +1001,7 @@ nav ul li a:focus {
 .books {
 display: flex;
 flex-wrap: wrap;
-gap: 20px; /* Space between items */
-
+gap: 20px; 
 }
   
  /* Styling for the book list */
@@ -1014,7 +1016,7 @@ gap: 20px; /* Space between items */
 
 /* Styling for each book item */
 .book-item {
-    flex: 0 0 calc(50% - 20px); /* Adjust width for 3 items per row, subtracting the gap */
+    flex: 0 0 calc(50% - 20px); /* 2 items per row */
     border: 1px solid #ddd; 
     padding: 15px;
     margin: 10px;
@@ -1030,20 +1032,20 @@ gap: 20px; /* Space between items */
     margin-bottom: 10px;
   }
   
-/* Responsive adjustments for smaller screens */
+/* Responsive */
 @media (max-width: 768px) {
     .book-item {
-        flex: 0 0 calc(50% - 20px); /* Adjust for 2 items per row on smaller screens */
+        flex: 0 0 calc(50% - 20px); /* 2 items per row */
     }
 }
 
 @media (max-width: 480px) {
     .book-item {
-        flex: 0 0 calc(100% - 20px); /* Full width on very small screens */
+        flex: 0 0 calc(100% - 20px);
     }
 }
   
-  /* Further styling for book details */
+  /* Postdated styling for book details, needs integration TODO */
   .book-details {
     text-align: center;
   }
@@ -1062,8 +1064,8 @@ gap: 20px; /* Space between items */
 }
 
 .read-status-form button[type="submit"] {
-    width: 100%; /* This makes the button extend to the width of its container */
-    box-sizing: border-box; /* Ensures padding doesn't affect the overall width */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 
@@ -1085,10 +1087,6 @@ gap: 20px; /* Space between items */
     }
 }
   
-
-
-
-
 /* Confirm Delete Container */
 .confirm-delete-container {
     max-width: 500px;
@@ -1117,11 +1115,6 @@ gap: 20px; /* Space between items */
     margin-bottom: 20px;
 }
 
-
-
-
-
-
 /* Edit Book Container */
 .edit-book-container {
     max-width: 600px;
@@ -1141,7 +1134,7 @@ gap: 20px; /* Space between items */
 
 /* Edit Book Form */
 .edit-book-form p {
-    margin-bottom: 15px; /* Spacing between form fields */
+    margin-bottom: 15px; 
 }
 
 .edit-book-form label,
@@ -1182,7 +1175,7 @@ gap: 20px; /* Space between items */
 
 /* Edit Profile Form */
 .edit-profile-form p {
-    margin-bottom: 15px; /* Consistent spacing between form fields */
+    margin-bottom: 15px; 
 }
 
 .edit-profile-form label,
@@ -1219,9 +1212,6 @@ gap: 20px; /* Space between items */
     margin-bottom: 20px;
 }
 
-
-
-
 /* INPUTS */
 
 /* Styling for number inputs with custom-number-input class */
@@ -1244,7 +1234,7 @@ input[type='number'].custom-number-input::-webkit-outer-spin-button {
     margin: 0;
 }
 
-/* Style for hover and focus states of custom-number-input */
+/* hover and focus states of custom-number-input */
 input[type='number'].custom-number-input:hover,
 input[type='number'].custom-number-input:focus {
     border-color: #007bff;
@@ -1253,7 +1243,7 @@ input[type='number'].custom-number-input:focus {
 
 
 .hidden {
-    display: none;
+    display: none; /* ??? */
 }
 
 .visible {
@@ -1297,9 +1287,9 @@ input[type='number'].custom-number-input:focus {
 
 /* Styling for the progress bar */
 .progress-bar {
-    height: 20px; /* Adjust the height as needed */
+    height: 20px;
     background-color: var(--deep-navy-blue); /* Progress bar color */
-    border-radius: 4px; /* Optional: rounded corners for the progress bar */
+    border-radius: 4px;
     transition: width 0.3s ease; 
 }
 
@@ -1324,12 +1314,12 @@ input[type='number'].custom-number-input:focus {
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer; 
     text-decoration: none; 
-    color: inherit; /* Keeps the text color consistent with the rest of the card */
+    color: inherit; /* Color consitency: rest of the card */
 }
 
 .book-card:hover {
-    transform: scale(1.05); /* Scales the book card slightly to give a pop effect */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow to lift the card */
+    transform: scale(1.05); /* Scales book card */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .book-card img {
@@ -1345,7 +1335,7 @@ input[type='number'].custom-number-input:focus {
     text-overflow: ellipsis;
     max-width: 100%;
     display: -webkit-box;
-    -webkit-line-clamp: 2; 
+    -webkit-line-clamp: 2;  /* Needs revision */
     -webkit-box-orient: vertical;
     margin: 0; 
     padding: 0; 
@@ -1353,13 +1343,13 @@ input[type='number'].custom-number-input:focus {
 }
 
 .book-title {
-    font-size: 1em; /* Adjust the font size for titles */
-    margin-bottom: 0.5em; /* Space between the title and the author */
+    font-size: 1em; 
+    margin-bottom: 0.5em;
 }
 
 .book-author {
-    font-size: 0.85em; /* Adjust the font size for authors */
-    color: var(--rich-maroon); /* Color for the author text */
+    font-size: 0.85em; 
+    color: var(--rich-maroon);
 }
 
 
@@ -1405,18 +1395,109 @@ input[type='number'].custom-number-input:focus {
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 10px;
-    flex-basis: calc(25% - 10px); /* Adjust for 4 books per row */
+    flex-basis: calc(25% - 10px); /* 4 books per row */
     box-sizing: border-box;
 }
 
 @media (max-width: 1024px) {
     .book-entry-profile {
-        flex-basis: calc(50% - 10px); /* Adjust for smaller screens */
+        flex-basis: calc(50% - 10px);
     }
 }
 
 @media (max-width: 768px) {
     .book-entry-profile {
-        flex-basis: 100%; /* Full width on very small screens */
+        flex-basis: 100%; 
     }
 }
+
+.footer-a {
+    color: var(--warm-beige-hover);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-a:hover {
+    color: var(--rich-maroon);
+}
+
+/* Modal Styling */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-a {
+    color: var(--deep-navy-blue);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.modal-a:hover {
+    color: var(--rich-maroon);
+}
+
+/* Demo credentials, loging.html */
+
+.demo-credentials {
+    padding: 5px;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto; 
+    width: 80%; 
+    top: 20px; 
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: var(--warm-beige);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.demo-credentials h2 {
+    text-align: center;
+}
+
+/* Reponsive credential info */
+@media (max-width: 600px) {
+    .demo-credentials {
+        top: 10px;
+        width: 85%; 
+    }
+}
+
+/* End of Book Tracker Demo Version CSS */

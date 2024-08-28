@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+ <!-- Modal structure -->
+ <div id="demoModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>This is a Book Tracker Demo Version. Although some functions are active, <strong>please be aware that the database will be automatically wiped at random.</strong> Any changes, new accounts, or saved books/information will not be persistent. Enjoy exploring the features!</p>
+      <p>Thank you for visiting,<br> <a href="https://anthonyem.com" class="modal-a">Anthony Em | 安思辰</a></p>
+  </div>
+</div>
+
 <div class="home-container">
   <section class="hero">
-    <h1 class="home-heading">Welcome to Book Tracker</h1>
+    <h1 class="home-heading">Welcome to Book Tracker Demo Version</h1>
     {% if user.is_authenticated %}
-      <p class="welcome-back">Welcome back, {{ user.username }}! Continue your reading journey.</p>
+      <p class="welcome-back">Welcome, {{ user.username }}! Continue your reading journey.</p>
       <a href="{% url 'dashboard' %}" class="btn btn-primary btn-hero">Go to Dashboard</a>
     {% else %}
       <div class="auth-links">

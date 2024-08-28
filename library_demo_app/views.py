@@ -6,7 +6,7 @@ import random
 import json
 from PIL import Image
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .forms import ExtendedSignUpForm, BookForm, ProfileForm, ReviewForm, QuickNoteForm
 from .models import Book, UserBook, Review, Genre, ReadingChallenge, User, Profile, QuickNote
 from django.contrib.auth.decorators import login_required
@@ -30,6 +30,11 @@ class CustomLoginView(AuthLoginView):
     def form_valid(self, form):
         messages.success(self.request, 'You have successfully logged in.')
         return super().form_valid(form)
+    
+@require_http_methods(["POST"])
+def custom_logout(request):
+    logout(request)
+    return redirect('home')
     
 @require_http_methods(["POST"])
 def validate_user_password(request):

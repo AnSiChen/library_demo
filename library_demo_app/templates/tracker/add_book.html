@@ -7,8 +7,9 @@
   <!-- Form to Fetch Book Details -->
   <form method="get" action="{% url 'add_book' %}" class="fetch-book-form">
       <label for="isbn">ISBN:</label>
-      <input type="text" id="isbn" name="isbn" class="isbn-input" value="{{ request.GET.isbn }}">
-      <input type="submit" class="btn btn-secondary" value="Fetch Book Details">
+      <input type="text" id="isbn" name="isbn" class="isbn-input" value="{{ request.GET.isbn }}" placeholder="Enter an ISBN and click 'Fetch' to retrieve book details. Note: Some books may be unavailable or incomplete."
+      >
+      <input type="submit" class="btn btn-secondary" value="Fetch">
   </form>
 
   <!-- Display Cover Image if URL is available -->

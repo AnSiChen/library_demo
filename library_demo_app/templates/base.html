@@ -4,16 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Tracker</title>
+    <meta name="description" content="Explore the Book Tracker Demo Version 1.0, a project created for Harvard CS50's Web Programming course. Dynamic web application designed to track books with various interactive and social features.">
+    <meta name="keywords" content="Anthony Em, 安思辰, Book Tracker, CS50, Web Programming, Python, JavaScript, Django Demo Version, Harvard">
+    <meta name="author" content="Anthony Em | 安思辰">
+
+
+    <title>Book Tracker Demo Version</title>
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon"> <!-- Favicon -->
     <link rel="icon" href="{% static 'favicon-32.png' %}" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}" sizes="180x180">
-    <!-- Additional CSS files or JS can be added here -->
+   
 </head>
 <body>
+
+
     <header>
 
         <!-- Logo -->
@@ -28,7 +35,7 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="#" id="logout-link">Logout</a></li>
                     <li class="user-info">
                         <a href="{% url 'edit_profile' %}">
                             <strong> @{{ user.username }}</strong>
@@ -76,7 +83,7 @@
         {% endblock content %}
     </main>
 
-    <footer >
+    <footer>
         <div class="container">
             <!-- Footer navigation links -->
             <nav>
@@ -88,17 +95,37 @@
             </nav>
             
             <!-- Copyright notice -->
-            <p id="le-footer">&copy; 2023 Book Tracker</p>
+            <p id="le-footer">&copy; 2023 Book Tracker Demo Version | by <a href="https://anthonyem.com" class="footer-a">Anthony Em | 安思辰</a> </p>
         </div>
     </footer>
 
-    <!-- Define csrftoken variable for use in JavaScript -->
+
+    <!-- csrftoken variable JS -->
     <script>
         const csrftoken = '{{ csrf_token }}';
     </script>
 
-    <!-- JavaScript files can be included at the bottom of the body -->
+    <!-- JavaScript files  -->
     <script src="{% static 'main.js' %}"></script>
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.getElementById('logout-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            var form = document.createElement('form');
+            form.action = '{% url "custom_logout" %}';
+            form.method = 'POST';
+        
+            // CSRF token is needed for POST requests
+            var csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = 'csrfmiddlewaretoken';
+            csrfInput.value = '{{ csrf_token }}';
+            form.appendChild(csrfInput);
+        
+            document.body.appendChild(form);
+            form.submit();
+        });
+        </script>
 </body>
 </html>
