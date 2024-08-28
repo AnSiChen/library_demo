@@ -12,7 +12,8 @@ services:
       - static_volume:/code/static
       - media_volume:/code/media
     environment:
-      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_SECRET_KEY=django-insecure-0quw1zfx!urg$$luzju8x&+=_rl&w6zb-iadle5qyo$
+
     ports:
       - "8010:8010"
     networks:
