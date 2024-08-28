@@ -161,4 +161,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 # RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 # RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 
-# Deploy test
+# Deploy test 2
