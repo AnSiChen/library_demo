@@ -4,8 +4,11 @@ FROM python:3.10-slim
 # Accept secret key as an argument during build
 ARG DJANGO_SECRET_KEY
 
+# Echo the secret key for debugging purposes
+RUN echo "DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}"
+
 # Set the environment variable from the ARG
-ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+ENV DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
 
 # Prevent Python from writing pyc files to disk (optional).
 ENV PYTHONDONTWRITEBYTECODE 1
