@@ -160,3 +160,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 # Recaptcha settings will go here
 # RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 # RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
+
+# Push test GITHUB ACTIONS
