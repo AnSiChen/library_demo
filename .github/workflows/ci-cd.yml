@@ -16,7 +16,7 @@ jobs:
     - name: Set Environment Variables
       run: |
         echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> $GITHUB_ENV
-
+    
     - name: Deploy to the server
       uses: appleboy/ssh-action@master
       with:
@@ -24,9 +24,12 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          set -e  # Stop on error
-          cd ~/library_demo
-          git pull origin main
-          docker-compose down
-          docker volume rm library_demo_static_volume || echo "Volume not found. Continuing..."
-          docker-compose up -d --build
+            set -e  # Stop on error
+            cd ~/library_demo
+            git pull origin main
+            docker-compose down
+            docker volume rm library_demo_static_volume || echo "Volume not found. Continuing..."
+            docker-compose build --no-cache  # Building images without using cache
+            docker-compose up -d  # Starting up services
+      
+    
