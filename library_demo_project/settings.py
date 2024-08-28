@@ -30,9 +30,9 @@ environ.Env.read_env(env_file)
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'booktracker-demo.anthonyem.com', 'anthonyem.com', '170.64.192.39']
 
 
 # Application definition
@@ -130,6 +130,17 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://booktracker-demo.anthonyem.com',
+    'https://anthonyem.com',
+    'https://www.anthonyem.com',
+]
+
+CSRF_COOKIE_DOMAIN = 'booktracker-demo.anthonyem.com'
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 # Custom settings
 
 LOGIN_REDIRECT_URL = 'home'
@@ -143,4 +154,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 # Email settings
+# Email not setup yet
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Recaptcha settings will go here
+# RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+# RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
