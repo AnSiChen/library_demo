@@ -25,6 +25,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
             set -e  # Stop on error
+            export DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
             cd ~/library_demo
             git pull origin main
             docker-compose down
