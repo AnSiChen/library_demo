@@ -9,7 +9,7 @@ services:
     command: gunicorn library_demo_project.wsgi:application --bind 0.0.0.0:8010
     volumes:
       - .:/code
-      - library_static_volume:/code/static
+      - library_static_volume:/code/staticfiles
       - library_media_volume:/code/media
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
