@@ -13,6 +13,14 @@ jobs:
     - name: Checkout the repository
       uses: actions/checkout@v3
 
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Debug SSH
+      run: ssh-add -l
+
     - name: Deploy to the server
       uses: appleboy/ssh-action@master
       with:
@@ -23,7 +31,7 @@ jobs:
           set -e  # Stop on error
 
           mkdir -p ~/.ssh
-            ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
           if [ ! -d "~/library_demo/.git" ]; then
             git clone git@github.com:AnSiChen/library_demo.git ~/library_demo
