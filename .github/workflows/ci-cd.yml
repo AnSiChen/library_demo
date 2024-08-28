@@ -21,6 +21,11 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           set -e  # Stop on error
+
+          if [ ! -d "~/library_demo/.git" ]; then
+            git clone git@github.com:AnSiChen/library_demo.git ~/library_demo
+          fi
+
           cd ~/library_demo
           if git pull origin main; then
             echo "Repository updated successfully."
