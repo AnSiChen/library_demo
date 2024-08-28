@@ -25,9 +25,8 @@ base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env_file = os.path.join(base_dir, '.env')
 
 env = environ.Env()
-environ.Env.read_env(env_file)
 
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY', default=os.getenv('DJANGO_SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
