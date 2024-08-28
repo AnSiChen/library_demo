@@ -16,6 +16,8 @@ ENV PYTHONUNBUFFERED 1
 # Set the working directory in the container to /code.
 WORKDIR /code
 
+RUN mkdir -p /code/static /code/media
+
 # Install pip requirements
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
