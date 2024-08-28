@@ -31,5 +31,7 @@ jobs:
             docker volume rm library_demo_static_volume || echo "Volume not found. Continuing..."
             docker-compose build --no-cache  # Building images without using cache
             docker-compose up -d  # Starting up services
-      
-    
+            export DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+            # Additional commands to handle migrations and collect static if needed
+            docker-compose exec web python manage.py migrate
+            docker-compose exec web python manage.py collectstatic --noinput
