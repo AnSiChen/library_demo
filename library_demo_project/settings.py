@@ -30,7 +30,7 @@ env = environ.Env()
 SECRET_KEY = "-qe3s-!u5*@vz#%k#8jxmy09=4(yuho87k0hl%aybg4)*m7ycc"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'booktracker-demo.anthonyem.com', 'anthonyem.com', '170.64.192.39']
 
