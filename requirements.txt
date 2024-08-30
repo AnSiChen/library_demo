@@ -1,13 +1,20 @@
+# Library Demo App Requirements
 gunicorn==20.1.0
-asgiref==3.7.2
+asgiref==3.8.1  # Higher version from script requirements
 certifi==2024.2.2
 charset-normalizer==3.3.2
 Django==5.0.3
 django-environ==0.11.2
 idna==3.6
 imgkit==1.2.3
-pillow==10.2.0
+Pillow==10.2.0  #  if using higher version from script
 requests==2.31.0
 six==1.16.0
-sqlparse==0.4.4
+sqlparse==0.5.1  # Higher version from script requirements
 urllib3==2.2.1
+
+# Additional Script Requirements
+Faker==22.0.0
+pytest==7.4.4
+pytest-django==4.7.0
+python-dateutil==2.9.0.post0
