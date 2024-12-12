@@ -568,3 +568,5 @@ def reading_challenge_view(request):
     return render(request, 'tracker/home.html', {
         'reading_challenge': reading_challenge
     })
+
+#
