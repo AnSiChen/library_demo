@@ -1,9 +1,7 @@
 name: CI/CD Pipeline for Django Application
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -25,13 +23,19 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         tty: false
         script: |
-            set -e  # Stop on error
+            set -e
             export DJANGO_SECRET_KEY="${{ secrets.DJANGO_SECRET_KEY }}"
-            cd ~/library_demo
+
+            cd ~/booktracker
+
             git pull origin main
-            docker-compose down
-            docker volume rm library_demo_static_volume || echo "Volume not found. Continuing..."
-            docker-compose build --no-cache  # Building images without using cache
-            docker-compose up -d  # Starting up services
-            docker-compose exec -T web python manage.py migrate
-            docker-compose exec -T web python manage.py collectstatic --noinput
+
+            docker compose down
+
+            docker volume rm library_static_volume || true
+
+            docker compose build --no-cache
+            docker compose up -d
+
+            docker compose exec -T library_demo_web python manage.py migrate
+            docker compose exec -T library_demo_web python manage.py collectstatic --noinput

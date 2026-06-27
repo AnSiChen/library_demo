@@ -27,7 +27,7 @@ env_file = os.path.join(base_dir, '.env')
 
 env = environ.Env()
 
-SECRET_KEY = "-qe3s-!u5*@vz#%k#8jxmy09=4(yuho87k0hl%aybg4)*m7ycc"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
